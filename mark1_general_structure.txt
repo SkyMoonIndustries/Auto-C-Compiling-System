@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#Success and failure arrays 
+success=()
+fail=()
+
+
+# Installing package
+apt install nmap -y
+# Check if the installation was successful
+if [ $? -eq 0 ]; then
+  echo "The package was successfully installed." 
+        success+=('nmap')
+else
+  echo "The package installation failed."
+        fail+=('nmap') 
+fi
+
+# Installing package
+apt install gobuster -y
+# Check if the installation was successful
+if [ $? -eq 0 ]; then
+  echo "The package was successfully installed." 
+        success+=('gobuster')
+else
+  echo "The package installation failed."
+        fail+=('gobuster') 
+fi
+
+# Installing package
+apt install hydra -y
+# Check if the installation was successful
+if [ $? -eq 0 ]; then
+  echo "The package was successfully installed." 
+        success+=('hydra')
+else
+  echo "The package installation failed."
+        fail+=('hydra') 
+fi
+
+#Wordlist cloning
+git clone https://github.com/SkyMoonIndustries/wordlists.git
+
+#Checking succes and fail arrays
+echo Successfully installed packages are: ${success[*]}
+echo Failed packages are: ${fail[*]}
